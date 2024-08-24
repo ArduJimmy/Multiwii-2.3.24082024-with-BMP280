@@ -1,4 +1,4 @@
-# Multiwii-2.3-with-BMP280
+# Multiwii-2.3-1_24082024-with-BMP280
 Multiwii brushed quadcopter with bmp280 module
 
 <h1>UPDATED 24 August 2024</h1>
