@@ -1,10 +1,21 @@
 # Multiwii-2.3-with-BMP280
 Multiwii brushed quadcopter with bmp280 module
 
-<p>All wiring and schematic is based on: <a href="https://github.com/ArduJimmy/ArduJimmy-Brushed-QuadX-With-Flysky">Multiwii 2.3 Brushed QuadX</a></p>
+<h1>UPDATED 24 August 2024</h1>
+<p>Safety first is one of the purpose of this following changes. I made little change in Multiwii.cpp</p>
 
-<img src="https://github.com/ArduJimmy/Multiwii-2.3-with-BMP280/blob/main/BMP280.png" alt="Multiwii with bmp280"/>
+<b>Previous</b>
+<code>else if (conf.activate[BOXARM] == 0 && rcSticks == THR_LO + YAW_HI + PIT_CE + ROL_CE) go_arm();      // Arm via YAW</code>
 
-<h3>WARNING!</h3>
-<p>This code is not being tested (since I have no bmp280 with me). If you use this modified multiwii 2.3 version. It's your own Risk !!!</p>
-<p>I will test it as soon as I get the module and show you HOW it works through my <a href="https://www.youtube.com/@Ardujimmy">Ardujimmy</a> YT channel</p>
+<b>After</b>
+<code>
+          //modified code: activating baro as soon as throttle increased and deactivating baro when arming (@ardujimmy 24 August 2024
+          else if (conf.activate[BOXARM] == 0 && rcSticks == THR_LO + YAW_HI + PIT_CE + ROL_CE) {
+              go_arm();
+              if (rcData[THROTTLE] > THR_LO && f.BARO_MODE == 0) {
+                  f.BARO_MODE = 1; // Activate BARO mode
+              }
+          }</code>
+
+<h2>TESTED!</h2>
+<p>All codes tested and please take this as your own risk!</p>
